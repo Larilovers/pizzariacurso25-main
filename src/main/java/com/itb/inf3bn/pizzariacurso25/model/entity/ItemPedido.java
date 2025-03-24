@@ -31,6 +31,8 @@ public class ItemPedido {
     Long produtoId;
 
 
+
+
      @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "produto_id", referencedColumnName = "id", nullable = true)
     private Produto produto;
@@ -45,6 +47,23 @@ public class ItemPedido {
 
         return isValid;
     }
+
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id", nullable = true)
+    private Produto produto;
+
+
+
+    @Transient
+    private String mensagemErro = "";
+    @Transient
+    private boolean isValid = true;
+    public boolean validarItemPedido() {
+
+        return isValid;
+    }
+
+    
 
 
 }

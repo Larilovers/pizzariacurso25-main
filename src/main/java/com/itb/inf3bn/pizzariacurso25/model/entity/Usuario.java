@@ -48,9 +48,23 @@ public class Usuario {
     private String tipoUsuario;
 
 
-     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Telefone> telefones = new ArrayList<>();
+
+
+    @Transient
+    private String mensagemErro = "";
+    @Transient
+    private boolean isValid = true;
+    public boolean validarUsuario() {
+
+        return isValid;
+    }
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Pedido> pedidos = new ArrayList<>();
 
 
     @Transient

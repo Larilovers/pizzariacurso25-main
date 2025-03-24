@@ -83,4 +83,19 @@ public class Produto {
         return isValid;
     }
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<ItemPedido> itemPedidos = new ArrayList<>();
+
+
+    @Transient
+    private String mensagemErro = "";
+    @Transient
+    private boolean isValid = true;
+    public boolean validarProduto() {
+
+        return isValid;
+    }
+
+
 }
